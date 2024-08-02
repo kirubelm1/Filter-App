@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Filter App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <h1 class="title">ADD FILTER</h1>
+        <hr>
+        <div class="buttons">
+        <input type="file" id="upload" accept="image/*">
+            <button id="grayscale">Grayscale</button>
+            <button id="sepia">Sepia</button>
+            <button id="blur">Blur</button>
+            <button id="brightness">Brightness</button>
+            <button id="contrast">Contrast</button>
+            <button id="reset">Reset</button>
+            <button id="download">Download</button>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
