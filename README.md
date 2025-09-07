@@ -2,6 +2,12 @@ Advanced Photo Editor
 
 A powerful, free, and open-source photo editing application built with modern web technologies. This project aims to provide a robust, user-friendly alternative to professional photo editing software, accessible directly in the browser.
 
+Screenshot
+
+
+
+Note: The screenshot is stored in the assets folder of the repository as screenshot.jpg. To update or replace it, capture a new screenshot of the application using your system’s screenshot tool (e.g., Snipping Tool on Windows) and copy-paste it to the assets folder in your repository using File Explorer.
+
 Overview
 
 Advanced Photo Editor is a feature-rich, browser-based photo editing tool designed to offer a Photoshop-like experience. It allows users to upload images and apply various filters and transformations with an intuitive interface. Currently, the application is entirely frontend-based, leveraging HTML, CSS, and JavaScript (with the Canvas API) to deliver real-time image manipulation.
@@ -112,24 +118,17 @@ Community Contributions: Encourage open-source contributions to expand features 
 
 Installation
 
-To run the application locally:
+To explore or contribute to the project, clone the repository for more details:
 
 
 
 
 
-Clone the repository:
-
-git clone https://github.com/kirubelm1/Filter-App
-
-
-Navigate to the project directory:
-
-cd Filter-App
+Repository: https://github.com/your-username/advanced-photo-editor
 
 
 
-Open index.html in a modern web browser (e.g., Chrome, Firefox, Edge).
+Open index.html in a modern web browser (e.g., Chrome, Firefox, Edge) to run the application locally.
 
 No additional dependencies are required, as the application runs entirely in the browser.
 
@@ -159,36 +158,23 @@ Download: Click "Download" to save the edited image as a PNG file.
 
 Contributing
 
-Contributions are welcome! To contribute:
+Contributions are welcome! You can contribute by:
 
 
 
 
 
-Fork the repository.
+Creating a pull request to propose new features, bug fixes, or improvements.
 
 
 
-Create a new branch (git checkout -b feature/your-feature).
+Opening an issue to report bugs, suggest enhancements, or ask questions.
 
-
-
-Make your changes and commit (git commit -m "Add your feature").
-
-
-
-Push to your branch (git push origin feature/your-feature).
-
-
-
-Open a Pull Request.
-
-Please follow the Code of Conduct and ensure your code adheres to the project's coding standards.
+Please follow the Code of Conduct and ensure your contributions align with the project's coding standards.
 
 License
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the license terms.
-
 
 Acknowledgments
 
@@ -197,8 +183,7 @@ Acknowledgments
 
 
 Inspired by professional photo editing tools like Adobe Photoshop and GIMP.
-
+KIRUBEL MESFIN PRODUCTION
 
 
 Built with love for the open-source community.
-KIRUBEL MESFIN PRODUCTION
