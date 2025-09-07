@@ -189,9 +189,6 @@ License
 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the license terms.
 
-Contact
-
-For questions, suggestions, or feedback, please open an issue on GitHub or contact [your-email@example.com].
 
 Acknowledgments
 
