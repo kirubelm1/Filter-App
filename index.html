@@ -3,27 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filter App</title>
+    <title>Advanced Photo Editor</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <hr>
-        <h1 class="title">ADD FILTER</h1>
-        <hr>
-        <div class="buttons">
-        <input type="file" id="upload" accept="image/*">
-            <button id="grayscale">Grayscale</button>
-            <button id="sepia">Sepia</button>
-            <button id="blur">Blur</button>
-            <button id="brightness">Brightness</button>
-            <button id="contrast">Contrast</button>
-            <button id="reset">Reset</button>
-            <button id="download">Download</button>
+    <div class="editor-container">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-section">
+                <button class="toolbar-btn" id="upload-btn">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Open</span>
+                </button>
+                <input type="file" id="upload" accept="image/*" style="display: none;">
+                <button class="toolbar-btn" id="save-btn">
+                    <i class="fas fa-save"></i>
+                    <span>Save</span>
+                </button>
+                <button class="toolbar-btn" id="undo-btn">
+                    <i class="fas fa-undo"></i>
+                    <span>Undo</span>
+                </button>
+                <button class="toolbar-btn" id="redo-btn">
+                    <i class="fas fa-redo"></i>
+                    <span>Redo</span>
+                </button>
+            </div>
+            <div class="toolbar-section">
+                <span class="zoom-info" id="zoom-info">100%</span>
+            </div>
         </div>
-        <canvas id="canvas"></canvas>
+
+        <div class="editor-body">
+            <!-- Left Sidebar - Tools -->
+            <div class="sidebar left-sidebar">
+                <div class="tool-section">
+                    <h3>Tools</h3>
+                    <div class="tool-grid">
+                        <button class="tool-btn active" data-tool="select">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="crop">
+                            <i class="fas fa-crop"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="brush">
+                            <i class="fas fa-paint-brush"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="eraser">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="text">
+                            <i class="fas fa-font"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="shape">
+                            <i class="fas fa-square"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-section">
+                    <h3>Transform</h3>
+                    <button class="action-btn" id="rotate-left">
+                        <i class="fas fa-undo"></i> Rotate Left
+                    </button>
+                    <button class="action-btn" id="rotate-right">
+                        <i class="fas fa-redo"></i> Rotate Right
+                    </button>
+                    <button class="action-btn" id="flip-horizontal">
+                        <i class="fas fa-arrows-alt-h"></i> Flip H
+                    </button>
+                    <button class="action-btn" id="flip-vertical">
+                        <i class="fas fa-arrows-alt-v"></i> Flip V
+                    </button>
+                </div>
+            </div>
+
+            <!-- Canvas Area -->
+            <div class="canvas-container">
+                <div class="canvas-wrapper">
+                    <canvas id="canvas"></canvas>
+                    <div class="canvas-overlay" id="crop-overlay" style="display: none;"></div>
+                </div>
+                <div class="canvas-controls">
+                    <button class="control-btn" id="zoom-out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="control-btn" id="zoom-fit">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="control-btn" id="zoom-in">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Adjustments & Layers -->
+            <div class="sidebar right-sidebar">
+                <div class="panel-tabs">
+                    <button class="tab-btn active" data-tab="adjustments">Adjustments</button>
+                    <button class="tab-btn" data-tab="filters">Filters</button>
+                    <button class="tab-btn" data-tab="layers">Layers</button>
+                </div>
+
+                <!-- Adjustments Panel -->
+                <div class="panel active" id="adjustments-panel">
+                    <div class="adjustment-group">
+                        <label>Brightness</label>
+                        <input type="range" id="brightness" min="-100" max="100" value="0" class="slider">
+                        <span class="value" id="brightness-value">0</span>
+                    </div>
+                    <div class="adjustment-group">
+                        <label>Contrast</label>
+                        <input type="range" id="contrast" min="-100" max="100" value="0" class="slider">
+                        <span class="value" id="contrast-value">0</span>
+                    </div>
+                    <div class="adjustment-group">
+                        <label>Saturation</label>
+                        <input type="range" id="saturation" min="-100" max="100" value="0" class="slider">
+                        <span class="value" id="saturation-value">0</span>
+                    </div>
+                    <div class="adjustment-group">
+                        <label>Hue</label>
+                        <input type="range" id="hue" min="-180" max="180" value="0" class="slider">
+                        <span class="value" id="hue-value">0</span>
+                    </div>
+                    <div class="adjustment-group">
+                        <label>Blur</label>
+                        <input type="range" id="blur" min="0" max="20" value="0" class="slider">
+                        <span class="value" id="blur-value">0</span>
+                    </div>
+                    <div class="adjustment-group">
+                        <label>Vignette</label>
+                        <input type="range" id="vignette" min="0" max="100" value="0" class="slider">
+                        <span class="value" id="vignette-value">0</span>
+                    </div>
+                    <button class="reset-btn" id="reset-adjustments">Reset All</button>
+                </div>
+
+                <!-- Filters Panel -->
+                <div class="panel" id="filters-panel">
+                    <div class="filter-presets">
+                        <button class="preset-btn" data-filter="none">Original</button>
+                        <button class="preset-btn" data-filter="vintage">Vintage</button>
+                        <button class="preset-btn" data-filter="bw">B&W</button>
+                        <button class="preset-btn" data-filter="sepia">Sepia</button>
+                        <button class="preset-btn" data-filter="dramatic">Dramatic</button>
+                        <button class="preset-btn" data-filter="cool">Cool</button>
+                        <button class="preset-btn" data-filter="warm">Warm</button>
+                    </div>
+                </div>
+
+                <!-- Layers Panel -->
+                <div class="panel" id="layers-panel">
+                    <div class="layer-controls">
+                        <button class="layer-btn" id="add-layer">
+                            <i class="fas fa-plus"></i> Add Layer
+                        </button>
+                        <button class="layer-btn" id="duplicate-layer">
+                            <i class="fas fa-copy"></i> Duplicate
+                        </button>
+                        <button class="layer-btn" id="delete-layer">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                    <div class="layers-list" id="layers-list">
+                        <div class="layer-item active" data-layer="0">
+                            <div class="layer-preview"></div>
+                            <span class="layer-name">Background</span>
+                            <input type="range" class="layer-opacity" min="0" max="100" value="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
